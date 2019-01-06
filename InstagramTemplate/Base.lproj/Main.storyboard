@@ -25,21 +25,41 @@
                                     <constraint firstAttribute="height" constant="43" id="cjC-tv-eSZ"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0994-1" translatesAutoresizingMaskIntoConstraints="NO" id="lt0-pz-fs7">
-                                <rect key="frame" x="0.0" y="20" width="375" height="43"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upperLeft" translatesAutoresizingMaskIntoConstraints="NO" id="tey-zu-4Ka">
+                                <rect key="frame" x="0.0" y="20" width="44" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="w3U-BU-qgA"/>
+                                    <constraint firstAttribute="width" constant="44" id="DIR-SF-QLa"/>
+                                    <constraint firstAttribute="height" constant="44" id="fcx-GJ-s6i"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upperRight" translatesAutoresizingMaskIntoConstraints="NO" id="0O7-4y-kH7">
+                                <rect key="frame" x="331" y="20" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="A3Y-Ph-cY6"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="FBL-IR-156"/>
+                                    <constraint firstAttribute="height" constant="44" id="Ydp-88-bir"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="jaK-fe-bQc"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="rinniswift" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bYe-1R-vIC">
+                                <rect key="frame" x="52" y="30" width="271" height="21"/>
+                                <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="tey-zu-4Ka" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="99E-zE-As5"/>
                             <constraint firstItem="FyD-mv-blP" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="9k7-Az-hh3"/>
                             <constraint firstItem="FyD-mv-blP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EZ2-Sb-Ger"/>
                             <constraint firstItem="FyD-mv-blP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Ee5-Tf-7Up"/>
-                            <constraint firstItem="lt0-pz-fs7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PxR-Nq-nrl"/>
-                            <constraint firstItem="lt0-pz-fs7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="STx-1I-8Z4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lt0-pz-fs7" secondAttribute="trailing" id="xEf-ox-fYb"/>
+                            <constraint firstItem="bYe-1R-vIC" firstAttribute="leading" secondItem="tey-zu-4Ka" secondAttribute="trailing" constant="8" id="MMI-h7-0xw"/>
+                            <constraint firstItem="0O7-4y-kH7" firstAttribute="leading" secondItem="bYe-1R-vIC" secondAttribute="trailing" constant="8" id="S3g-df-9Ub"/>
+                            <constraint firstItem="bYe-1R-vIC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="cVu-Yw-QVD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0O7-4y-kH7" secondAttribute="trailing" id="cWT-tZ-XAw"/>
+                            <constraint firstItem="0O7-4y-kH7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="koI-hz-BOM"/>
+                            <constraint firstItem="tey-zu-4Ka" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vNU-Am-3m2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -51,6 +71,7 @@
     </scenes>
     <resources>
         <image name="IMG_0994" width="375" height="43"/>
-        <image name="IMG_0994-1" width="750" height="86"/>
+        <image name="upperLeft" width="91" height="82"/>
+        <image name="upperRight" width="93" height="82"/>
     </resources>
 </document>
