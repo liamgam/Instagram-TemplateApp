@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     
@@ -20,9 +21,28 @@ class ViewController: UIViewController {
         
     }
     
-    // use to make the view or any subview that is the first responder resign (optionally force)
+    override func viewWillAppear(_ animated: Bool) {
+        // shows the usersname when user opens up this page
+        let profiles = CoreDataHelper.retrieveprofile()
+        let profile = profiles.first
+        usernameTextField.text = profile?.username // ?? ""
+    }
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // use to make the view or any subview that is the first responder resign (optionally force)
         self.view.endEditing(true)
+        
+        // set the username text field to the one saved in coredata (?)
+        let profiles = CoreDataHelper.retrieveprofile()
+        let profile = profiles.first
+        profile?.username = usernameTextField.text
+        
+        // create a new profile and set the username to the textfield user input
+        let username = CoreDataHelper.newProfile()
+        username.username = usernameTextField.text
+        CoreDataHelper.saveProfile()
+        
     }
     
 }
