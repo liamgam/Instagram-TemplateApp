@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0994" translatesAutoresizingMaskIntoConstraints="NO" id="FyD-mv-blP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="middleProfile" translatesAutoresizingMaskIntoConstraints="NO" id="FyD-mv-blP">
                                 <rect key="frame" x="0.0" y="624" width="375" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="375" id="8Nx-0l-bOx"/>
@@ -38,11 +38,11 @@
                                                     <constraint firstAttribute="height" constant="44" id="fcx-GJ-s6i"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="rinniswift" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bYe-1R-vIC">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="enter username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bYe-1R-vIC">
                                                 <rect key="frame" x="52" y="11.5" width="271" height="21"/>
-                                                <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
                                             </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upperRight" translatesAutoresizingMaskIntoConstraints="NO" id="0O7-4y-kH7">
                                                 <rect key="frame" x="331" y="0.0" width="44" height="44"/>
@@ -63,6 +63,12 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="middleProfilee" translatesAutoresizingMaskIntoConstraints="NO" id="HEF-AP-nXr">
+                                <rect key="frame" x="0.0" y="68" width="375" height="305"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="305" id="IYx-4I-5Ch"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -70,12 +76,21 @@
                             <constraint firstItem="FyD-mv-blP" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="9k7-Az-hh3"/>
                             <constraint firstItem="FyD-mv-blP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EZ2-Sb-Ger"/>
                             <constraint firstItem="FyD-mv-blP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Ee5-Tf-7Up"/>
+                            <constraint firstItem="HEF-AP-nXr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ej5-jF-2ao"/>
                             <constraint firstItem="7Kd-bF-a1h" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="IQe-QX-nks"/>
+                            <constraint firstItem="HEF-AP-nXr" firstAttribute="top" secondItem="7Kd-bF-a1h" secondAttribute="bottom" id="Oxc-wq-HIZ"/>
+                            <constraint firstItem="HEF-AP-nXr" firstAttribute="top" secondItem="7Kd-bF-a1h" secondAttribute="bottom" id="cBA-w1-I7T"/>
                             <constraint firstAttribute="trailing" secondItem="7Kd-bF-a1h" secondAttribute="trailing" id="eIx-3t-LX1"/>
+                            <constraint firstItem="HEF-AP-nXr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hhV-xt-UeE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HEF-AP-nXr" secondAttribute="trailing" id="sds-3t-3jk"/>
+                            <constraint firstItem="HEF-AP-nXr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="trm-HL-KQd"/>
                             <constraint firstItem="7Kd-bF-a1h" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ywA-02-XAB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="usernameTextField" destination="bYe-1R-vIC" id="vVl-Uu-vzt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,7 +98,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IMG_0994" width="375" height="43"/>
+        <image name="middleProfile" width="750" height="90"/>
+        <image name="middleProfilee" width="750" height="614"/>
         <image name="upperLeft" width="91" height="82"/>
         <image name="upperRight" width="93" height="82"/>
         <image name="upperUnderline" width="750" height="5"/>
