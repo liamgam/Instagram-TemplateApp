@@ -145,7 +145,6 @@
                                                     <state key="normal" title="Button" image="addImages"/>
                                                     <connections>
                                                         <action selector="addImageButtonTapped:" destination="T3S-1N-iQr" eventType="touchUpInside" id="P1b-Jp-vyo"/>
-                                                        <action selector="imageButtonTappedController:" destination="3lc-Ov-5OR" eventType="touchUpInside" id="EdB-vE-9aZ"/>
                                                     </connections>
                                                 </button>
                                                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RSJ-bP-UOj">

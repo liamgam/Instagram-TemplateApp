@@ -9,18 +9,15 @@
 import UIKit
 import Photos
 
-class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImagePickerDelegate {
     
     // MARK: - outlets
     @IBOutlet weak var collectionView: UICollectionView!
-
-    
-    // MARK: - instances
-    let postCell = CollectionViewCell()
     
     // MARK: - variables
     let imagePicker = UIImagePickerController()
     var postImage: UIImage?
+    var selectedCell : UICollectionViewCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,21 +28,43 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         
     }
     
-    // MARK: - actions
-    @IBAction func imageButtonTappedController(_ sender: UIButton) {
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = true
-        self.present(imagePicker, animated: true, completion: nil)
+    // MARK: - delegate function
+    
+    func pickImage() {
+        // ImagePickerDelegate
+        
+        // request access. If authorized, show the image picker
+        PHPhotoLibrary.requestAuthorization { (status) in
+            switch status {
+            case .authorized:
+                self.imagePicker.sourceType = .photoLibrary
+                self.imagePicker.allowsEditing = true
+                self.present(self.imagePicker, animated: true, completion: nil)
+            case .denied:
+                print("denied")
+            case .notDetermined:
+                print("not determined")
+            case .restricted:
+                print("resstricted")
+            }
+        }
+        
+        
         
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        // UIImagePickerControllerDelegate
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            postImage = image
-            self.dismiss(animated: true, completion: nil)
+            // dismiss view controller once user picks an image
+            dismiss(animated: true, completion: nil)
+            let cell = collectionView.cellForItem(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! CollectionViewCell
+            cell.image = image
+            cell.addImageButton.isHidden = true
+            cell.img.isHidden = false
+            cell.setNeedsLayout()   // call when you want to update a view's subviews.
         }
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 12
@@ -53,18 +72,12 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CollectionViewCell
-        
-        
-        // make sure there is an image in the cell
-        guard let postImage = postImage else {
-            return cell
-        }
-        cell.img.image = postImage
-        cell.img.isHidden = false
-        cell.addImageButton.isHidden = true
+        cell.delegate = self
         return cell
     }
+
 }
+
 
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     
@@ -84,6 +97,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        // horizontal spacing
         return 1.5
     }
 }
