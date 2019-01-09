@@ -11,13 +11,16 @@ import Photos
 
 class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImagePickerDelegate {
     
+    
+    
     // MARK: - outlets
     @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - variables
     let imagePicker = UIImagePickerController()
-    var postImage: UIImage?
-    var selectedCell : UICollectionViewCell?
+    var selectedCell : CollectionViewCell?
+    var images = [UIImage?](repeating: nil, count: 12)                    // storing images in the correct index
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,15 +33,17 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     // MARK: - delegate function
     
-    func pickImage() {
+    func pickImage(cell: CollectionViewCell) {
         // ImagePickerDelegate
         
         // request access. If authorized, show the image picker
         PHPhotoLibrary.requestAuthorization { (status) in
             switch status {
             case .authorized:
+                // sets the imagepicker which presents the photolibrary
                 self.imagePicker.sourceType = .photoLibrary
                 self.imagePicker.allowsEditing = true
+                self.selectedCell = cell
                 self.present(self.imagePicker, animated: true, completion: nil)
             case .denied:
                 print("denied")
@@ -48,9 +53,6 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
                 print("resstricted")
             }
         }
-        
-        
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
@@ -58,10 +60,19 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             // dismiss view controller once user picks an image
             dismiss(animated: true, completion: nil)
-            let cell = collectionView.cellForItem(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! CollectionViewCell
+            guard
+                let cell = selectedCell,
+                let indexPath = collectionView.indexPath(for: cell) else {
+                    return
+            }
+            
+            // append image to the correct index path in the images array?
+            images[indexPath.row] = image
+            
             cell.image = image
             cell.addImageButton.isHidden = true
             cell.img.isHidden = false
+            
             cell.setNeedsLayout()   // call when you want to update a view's subviews.
         }
     }
@@ -73,6 +84,12 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! CollectionViewCell
         cell.delegate = self
+        
+        // add the images to the correct index?
+        let imageForIndexPath = images[indexPath.row]
+        // set the image of the cell at the index path
+        cell.img.image = imageForIndexPath
+        
         return cell
     }
 

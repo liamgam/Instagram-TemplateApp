@@ -19,7 +19,7 @@ class CollectionViewCell: UICollectionViewCell, UIImagePickerControllerDelegate,
     
     // MARK: - actions
     @IBAction func addImageButtonTapped(_ sender: UIButton) {
-        delegate?.pickImage()
+        delegate?.pickImage(cell: self)
     }
     
     // MARK: - properties

@@ -11,6 +11,7 @@ import UIKit
 
 protocol ImagePickerDelegate {
     
-    func pickImage()
+    
+    func pickImage(cell: CollectionViewCell)
     
 }
