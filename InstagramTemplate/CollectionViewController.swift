@@ -118,3 +118,18 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
         return 1.5
     }
 }
+
+
+
+/*
+ 
+ 1) create a delegate(ImagePickerDelegate) to transfer data from the collectionViewCell to the collectionViewController since we want to present the imagePicker. because we set the delegate in the collectionViewCell
+ 2) set a function(pickImage(cell:)) in the delegate that passes the collectionViewCell in as the parameter to be able to access the index of the cell
+ 3) set a varibale in the collectionViewCell to be of type ImagePickerDelegate, and call the function pickImage(cell:) in the action where we pass self in as the cell since its in the collectionViewCell.
+ 4) set the collectionViewContoller to conform to the ImagePickerdelegate protocol and put the required functions in.
+ 5) in the collectionViewController:
+    6) in the pickImage(cell) function, the cell would be of type CollectionViewCell, set the UIImagePickerController and set the cell previously called as a variable to equal the cell passed in by the pickImage(cell) function.
+    7) in the didFinishPickingMediaWithInfo function, make sure there's a cell and get the index path of that cell in the collectionView
+    8) in the didFinishPickingMediaWithInfo add the image into the correct index of the images array depending on the selectedcell.
+ 
+ */
