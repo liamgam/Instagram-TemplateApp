@@ -54,7 +54,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             dismiss(animated: true, completion: nil)
             guard
                 let cell = selectedCell,
@@ -107,7 +107,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let username = CoreDataHelper.newProfile()
         username.username = usernameTextField.text
         CoreDataHelper.saveProfile()
-        
     }
 }
 
