@@ -12,6 +12,7 @@ import Photos
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImagePickerDelegateMain {
     
+    
     // MARK: - Variables
     let imagePicker = UIImagePickerController()
     var selectedCell: CollectionViewCellMain?
@@ -29,6 +30,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.delegate = self
         collectionView.dataSource = self
         imagePicker.delegate = self
+    
         
     }
     
@@ -36,10 +38,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         PHPhotoLibrary.requestAuthorization{ (status) in
             switch status {
             case .authorized:
-                self.imagePicker.sourceType = .photoLibrary
-                self.imagePicker.allowsEditing = true
-                self.selectedCell = cell
-                self.present(self.imagePicker, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.imagePicker.sourceType = .photoLibrary
+                    self.imagePicker.allowsEditing = true
+                    self.selectedCell = cell
+                    self.present(self.imagePicker, animated: true, completion: nil)
+                }
             case .notDetermined:
                 print("not determined")
             case .restricted:
@@ -83,6 +87,26 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        PHPhotoLibrary.requestAuthorization{ (status) in
+            switch status {
+            case .authorized:
+                DispatchQueue.main.async {
+                    self.imagePicker.sourceType = .photoLibrary
+                    self.imagePicker.allowsEditing = true
+                    self.selectedCell = collectionView.cellForItem(at: indexPath) as? CollectionViewCellMain
+                    self.present(self.imagePicker, animated: true, completion: nil)
+                }
+            case .notDetermined:
+                print("not determined")
+            case .restricted:
+                print("restricted")
+            case .denied:
+                print("denied")
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         // shows the usersname when user opens up this page
         let profiles = CoreDataHelper.retrieveprofile()
@@ -106,6 +130,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         CoreDataHelper.saveProfile()
     }
 }
+
+
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
