@@ -80,7 +80,6 @@
 				A4B3894421E19ACC00B66269 /* Main.storyboard */,
 				A4B3894721E19ACD00B66269 /* Assets.xcassets */,
 				A4B3894921E19ACD00B66269 /* LaunchScreen.storyboard */,
-				A4B3894C21E19ACD00B66269 /* Info.plist */,
 				A477F56A21E3E79C0040EC8C /* InstagramTemplate.xcdatamodeld */,
 			);
 			path = SupportingFiles;
@@ -101,6 +100,7 @@
 				A487A44421E7159E002489D6 /* View */,
 				A487A44721E71634002489D6 /* Model */,
 				A477F56D21E3E97B0040EC8C /* helper */,
+				A4B3894C21E19ACD00B66269 /* Info.plist */,
 				A487A44621E715DB002489D6 /* SupportingFiles */,
 				A4B3893F21E19ACC00B66269 /* Sample */,
 				A4B3893E21E19ACC00B66269 /* Products */,
@@ -352,7 +352,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V63UZ8ZMFC;
-				INFOPLIST_FILE = InstagramTemplate/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -370,7 +370,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V63UZ8ZMFC;
-				INFOPLIST_FILE = InstagramTemplate/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
