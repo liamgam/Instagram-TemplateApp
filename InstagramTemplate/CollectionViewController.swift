@@ -130,3 +130,14 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     8) in the didFinishPickingMediaWithInfo add the image into the correct index of the images array depending on the selectedcell.
  
  */
+
+/*
+ HOW TO CREATE A DELEGATE:
+ 1. create a protocol with functions that may contain a parameter where you can send data into
+ 2. let the view controller you want to pass the data to to conform the protocol
+ 3. obviously conform to the protocol stubs(functions) and in the funcion write what you want it to do in the current view controller when the delegate is called in the other viewcontroller
+ 4. set the delegate to self
+ 
+ 5. set a variable called delegate which will be an instantiation of the protocol.
+ 6. call the delegate function wherever you want to send the data to the other view controller
+ */
