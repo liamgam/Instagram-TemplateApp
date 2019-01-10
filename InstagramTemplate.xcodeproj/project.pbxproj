@@ -49,14 +49,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A438AC2021E67907008DECD6 /* CollectionView */ = {
-			isa = PBXGroup;
-			children = (
-				A438AC2321E6793B008DECD6 /* CollectionViewCellMain.swift */,
-			);
-			path = CollectionView;
-			sourceTree = "<group>";
-		};
 		A477F56D21E3E97B0040EC8C /* helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,14 +57,52 @@
 			path = helper;
 			sourceTree = "<group>";
 		};
+		A487A44421E7159E002489D6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A438AC2321E6793B008DECD6 /* CollectionViewCellMain.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A487A44521E715B7002489D6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A4B3894221E19ACC00B66269 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A487A44621E715DB002489D6 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				A4B3894021E19ACC00B66269 /* AppDelegate.swift */,
+				A4B3894421E19ACC00B66269 /* Main.storyboard */,
+				A4B3894721E19ACD00B66269 /* Assets.xcassets */,
+				A4B3894921E19ACD00B66269 /* LaunchScreen.storyboard */,
+				A4B3894C21E19ACD00B66269 /* Info.plist */,
+				A477F56A21E3E79C0040EC8C /* InstagramTemplate.xcdatamodeld */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		A487A44721E71634002489D6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A419EF4121E695EC0033807D /* ImagePickerDelegateMain.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A4B3893421E19ACC00B66269 = {
 			isa = PBXGroup;
 			children = (
-				A477F56A21E3E79C0040EC8C /* InstagramTemplate.xcdatamodeld */,
+				A487A44521E715B7002489D6 /* Controller */,
+				A487A44421E7159E002489D6 /* View */,
+				A487A44721E71634002489D6 /* Model */,
 				A477F56D21E3E97B0040EC8C /* helper */,
-				A4B3893F21E19ACC00B66269 /* InstagramTemplate */,
-				A438AC2021E67907008DECD6 /* CollectionView */,
-				A4C8F51821E58E3300FE05CF /* Protocol */,
+				A487A44621E715DB002489D6 /* SupportingFiles */,
+				A4B3893F21E19ACC00B66269 /* Sample */,
 				A4B3893E21E19ACC00B66269 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,28 +115,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A4B3893F21E19ACC00B66269 /* InstagramTemplate */ = {
+		A4B3893F21E19ACC00B66269 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
-				A4B3894021E19ACC00B66269 /* AppDelegate.swift */,
-				A4B3894221E19ACC00B66269 /* ViewController.swift */,
-				A4B3894421E19ACC00B66269 /* Main.storyboard */,
-				A4B3894721E19ACD00B66269 /* Assets.xcassets */,
-				A4B3894921E19ACD00B66269 /* LaunchScreen.storyboard */,
-				A4B3894C21E19ACD00B66269 /* Info.plist */,
 				A476A5BB21E4200A00232328 /* CollectionViewController.swift */,
 				A476A5BD21E4231400232328 /* CollectionViewCell.swift */,
 				A4C8F51621E58E2C00FE05CF /* ImagePickerDelegate.swift */,
 			);
-			path = InstagramTemplate;
-			sourceTree = "<group>";
-		};
-		A4C8F51821E58E3300FE05CF /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				A419EF4121E695EC0033807D /* ImagePickerDelegateMain.swift */,
-			);
-			path = Protocol;
+			path = Sample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -17,21 +17,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var selectedCell: CollectionViewCellMain?
     var images = [UIImage?](repeating: nil, count: 12)
     
-    // MARK: labels
-    @IBOutlet weak var usernameTextField: UITextField!
-    
     // MARK: - Variables
+    @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // set grey instagram color background
+        
         view.backgroundColor = UIColor(displayP3Red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
         
         collectionView.delegate = self
         collectionView.dataSource = self
         imagePicker.delegate = self
-        
         
     }
     
@@ -127,7 +124,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        // horizontal spacing
         return 1.5
     }
 }
