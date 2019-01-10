@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3lc-Ov-5OR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -74,17 +74,70 @@
                                     <constraint firstAttribute="width" secondItem="HEF-AP-nXr" secondAttribute="height" multiplier="138:113" id="Kbn-VU-Pon"/>
                                 </constraints>
                             </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1xO-ba-D8Z">
+                                <rect key="frame" x="0.0" y="431" width="414" height="388"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="z82-0F-HKO">
+                                    <size key="itemSize" width="133" height="118"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="postCell" id="Z5b-pJ-ins" customClass="CollectionViewCellMain" customModule="InstagramTemplate" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="133" height="118"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="133" height="118"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkd-rv-0jt">
+                                                    <rect key="frame" x="34" y="26.5" width="65" height="65"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="65" id="FyP-kn-z3z"/>
+                                                        <constraint firstAttribute="width" constant="65" id="dTn-8p-Alb"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="addImages"/>
+                                                    <connections>
+                                                        <action selector="addImageButtonTapped:" destination="Z5b-pJ-ins" eventType="touchUpInside" id="Y3h-LZ-guZ"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rPU-rj-yTX">
+                                                    <rect key="frame" x="0.0" y="0.0" width="133" height="118"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="rPU-rj-yTX" secondAttribute="trailing" id="7mk-Yj-RTb"/>
+                                            <constraint firstItem="rPU-rj-yTX" firstAttribute="leading" secondItem="Z5b-pJ-ins" secondAttribute="leading" id="DT4-nu-f8Q"/>
+                                            <constraint firstItem="rPU-rj-yTX" firstAttribute="top" secondItem="Z5b-pJ-ins" secondAttribute="top" id="EHh-hx-5cu"/>
+                                            <constraint firstItem="Mkd-rv-0jt" firstAttribute="centerY" secondItem="Z5b-pJ-ins" secondAttribute="centerY" id="LGp-wg-i7C"/>
+                                            <constraint firstAttribute="bottom" secondItem="rPU-rj-yTX" secondAttribute="bottom" id="ccc-gF-eFa"/>
+                                            <constraint firstItem="Mkd-rv-0jt" firstAttribute="centerX" secondItem="Z5b-pJ-ins" secondAttribute="centerX" id="hRw-wE-8bM"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="addImageButton" destination="Mkd-rv-0jt" id="lUT-Wc-cx5"/>
+                                            <outlet property="imageInCell" destination="rPU-rj-yTX" id="pBW-IV-Zjo"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="HEF-AP-nXr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0Bi-AT-bjV"/>
                             <constraint firstItem="7Kd-bF-a1h" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="5oT-CU-qdX"/>
+                            <constraint firstItem="FyD-mv-blP" firstAttribute="top" secondItem="1xO-ba-D8Z" secondAttribute="bottom" id="6p4-v0-FcP"/>
                             <constraint firstItem="FyD-mv-blP" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="9k7-Az-hh3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1xO-ba-D8Z" secondAttribute="trailing" id="CaJ-wV-YRz"/>
                             <constraint firstItem="FyD-mv-blP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EZ2-Sb-Ger"/>
                             <constraint firstItem="FyD-mv-blP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Ee5-Tf-7Up"/>
                             <constraint firstItem="7Kd-bF-a1h" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="IQe-QX-nks"/>
                             <constraint firstItem="HEF-AP-nXr" firstAttribute="top" secondItem="7Kd-bF-a1h" secondAttribute="bottom" id="IV1-Nb-qTm"/>
+                            <constraint firstItem="1xO-ba-D8Z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KUh-hy-dG7"/>
                             <constraint firstItem="HEF-AP-nXr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Qys-XJ-pGd"/>
+                            <constraint firstItem="1xO-ba-D8Z" firstAttribute="top" secondItem="HEF-AP-nXr" secondAttribute="bottom" id="TgO-po-0FZ"/>
                             <constraint firstAttribute="trailing" secondItem="7Kd-bF-a1h" secondAttribute="trailing" id="eIx-3t-LX1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HEF-AP-nXr" secondAttribute="trailing" id="sds-3t-3jk"/>
                             <constraint firstItem="HEF-AP-nXr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="trm-HL-KQd"/>
@@ -100,6 +153,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="1xO-ba-D8Z" id="GQU-UF-RJQ"/>
                         <outlet property="usernameTextField" destination="bYe-1R-vIC" id="vVl-Uu-vzt"/>
                     </connections>
                 </viewController>

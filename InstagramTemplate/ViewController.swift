@@ -8,17 +8,82 @@
 
 import UIKit
 import CoreData
+import Photos
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImagePickerDelegateMain {
+    
+    // MARK: - Variables
+    let imagePicker = UIImagePickerController()
+    var selectedCell: CollectionViewCellMain?
+    var images = [UIImage?](repeating: nil, count: 12)
     
     // MARK: labels
     @IBOutlet weak var usernameTextField: UITextField!
-
+    
+    // MARK: - Variables
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // set grey instagram color background
         view.backgroundColor = UIColor(displayP3Red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
         
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        imagePicker.delegate = self
+        
+        
+    }
+    
+    func pickImageMain(cell: CollectionViewCellMain) {
+        PHPhotoLibrary.requestAuthorization{ (status) in
+            switch status {
+            case .authorized:
+                self.imagePicker.sourceType = .photoLibrary
+                self.imagePicker.allowsEditing = true
+                self.selectedCell = cell
+                self.present(self.imagePicker, animated: true, completion: nil)
+            case .notDetermined:
+                print("not determined")
+            case .restricted:
+                print("restricted")
+            case .denied:
+                print("denied")
+            }
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            dismiss(animated: true, completion: nil)
+            guard
+                let cell = selectedCell,
+                let indexPath = collectionView.indexPath(for: cell) else {
+                    return
+            }
+            
+            images[indexPath.row] = image
+            cell.image = image
+            cell.addImageButton.isHidden = true
+            cell.imageInCell.isHidden = false
+            
+            cell.setNeedsLayout()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! CollectionViewCellMain
+        cell.delegate = self
+        
+        let imageForIndexPath = images[indexPath.row]
+        cell.imageInCell.image = imageForIndexPath
+        cell.image = imageForIndexPath
+        
+        return cell
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +109,26 @@ class ViewController: UIViewController {
         CoreDataHelper.saveProfile()
         
     }
-    
 }
 
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width = (collectionView.bounds.width / 3) - 1
+        
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        // horizontal spacing
+        return 1.5
+    }
+}

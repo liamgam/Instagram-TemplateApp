@@ -11,8 +11,6 @@ import Photos
 
 class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImagePickerDelegate {
     
-    
-    
     // MARK: - outlets
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -33,9 +31,9 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     // MARK: - delegate function
     
+    
     func pickImage(cell: CollectionViewCell) {
         // ImagePickerDelegate
-        
         // request access. If authorized, show the image picker
         PHPhotoLibrary.requestAuthorization { (status) in
             switch status {
@@ -92,7 +90,6 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         
         return cell
     }
-
 }
 
 

@@ -11,6 +11,7 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // MARK: - delegates
     var delegate: ImagePickerDelegate?
     
     // MARK: - outlets
