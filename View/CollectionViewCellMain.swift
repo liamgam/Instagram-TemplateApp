@@ -27,6 +27,4 @@ class CollectionViewCellMain: UICollectionViewCell, UIImagePickerControllerDeleg
             self.imageInCell.image = image
         }
     }
-    
-    
 }

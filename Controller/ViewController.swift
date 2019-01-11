@@ -30,7 +30,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.delegate = self
         collectionView.dataSource = self
         imagePicker.delegate = self
-    
         
     }
     
@@ -56,18 +55,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            
             dismiss(animated: true, completion: nil)
             guard
                 let cell = selectedCell,
                 let indexPath = collectionView.indexPath(for: cell) else {
                     return
             }
-            
             images[indexPath.row] = image
             cell.image = image
-            cell.addImageButton.isHidden = true
-            cell.imageInCell.isHidden = false
-            
             cell.setNeedsLayout()
         }
     }
@@ -76,14 +72,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return 12
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! CollectionViewCellMain
         cell.delegate = self
         
-        let imageForIndexPath = images[indexPath.row]
-        cell.imageInCell.image = imageForIndexPath
-        cell.image = imageForIndexPath
-        
+        if let imageForIndexPath  = images[indexPath.row] {
+            cell.image = imageForIndexPath
+        } else {
+            cell.image = UIImage(named: "addImages")
+        }
         return cell
     }
     

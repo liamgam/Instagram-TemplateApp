@@ -91,18 +91,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="133" height="118"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkd-rv-0jt">
-                                                    <rect key="frame" x="34" y="26.5" width="65" height="65"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="65" id="FyP-kn-z3z"/>
-                                                        <constraint firstAttribute="width" constant="65" id="dTn-8p-Alb"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Button" image="addImages"/>
-                                                    <connections>
-                                                        <action selector="addImageButtonTapped:" destination="Z5b-pJ-ins" eventType="touchUpInside" id="Y3h-LZ-guZ"/>
-                                                    </connections>
-                                                </button>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rPU-rj-yTX">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addImages" translatesAutoresizingMaskIntoConstraints="NO" id="rPU-rj-yTX">
                                                     <rect key="frame" x="0.0" y="0.0" width="133" height="118"/>
                                                 </imageView>
                                             </subviews>
@@ -112,12 +101,9 @@
                                             <constraint firstAttribute="trailing" secondItem="rPU-rj-yTX" secondAttribute="trailing" id="7mk-Yj-RTb"/>
                                             <constraint firstItem="rPU-rj-yTX" firstAttribute="leading" secondItem="Z5b-pJ-ins" secondAttribute="leading" id="DT4-nu-f8Q"/>
                                             <constraint firstItem="rPU-rj-yTX" firstAttribute="top" secondItem="Z5b-pJ-ins" secondAttribute="top" id="EHh-hx-5cu"/>
-                                            <constraint firstItem="Mkd-rv-0jt" firstAttribute="centerY" secondItem="Z5b-pJ-ins" secondAttribute="centerY" id="LGp-wg-i7C"/>
                                             <constraint firstAttribute="bottom" secondItem="rPU-rj-yTX" secondAttribute="bottom" id="ccc-gF-eFa"/>
-                                            <constraint firstItem="Mkd-rv-0jt" firstAttribute="centerX" secondItem="Z5b-pJ-ins" secondAttribute="centerX" id="hRw-wE-8bM"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="addImageButton" destination="Mkd-rv-0jt" id="lUT-Wc-cx5"/>
                                             <outlet property="imageInCell" destination="rPU-rj-yTX" id="pBW-IV-Zjo"/>
                                         </connections>
                                     </collectionViewCell>
