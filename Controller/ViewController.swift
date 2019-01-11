@@ -20,6 +20,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     // MARK: - Variables
+    fileprivate var longPressGesture: UILongPressGestureRecognizer!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -32,6 +33,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.dataSource = self
         imagePicker.delegate = self
         
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
+        collectionView.addGestureRecognizer(longPressGesture)
         
     }
     
@@ -47,6 +50,27 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             images[indexPath.row] = image
             cell.image = image
             cell.setNeedsLayout()
+        }
+    }
+    
+    @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+        switch gesture.state {
+        case .possible:
+            print("possible")
+        case .began:
+            let gesturePoint = gesture.location(in: self.collectionView)
+            guard let selectedIndex = self.collectionView.indexPathForItem(at: gesturePoint) else {
+                break
+            }
+            collectionView.beginInteractiveMovementForItem(at: selectedIndex)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view))
+        case .ended:
+            collectionView.endInteractiveMovement()
+        case .cancelled:
+            collectionView.cancelInteractiveMovement()
+        case .failed:
+            collectionView.endInteractiveMovement()
         }
     }
     
@@ -83,6 +107,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 print("denied")
             }
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        let item = images.remove(at: sourceIndexPath.row)
+        images.insert(item, at: destinationIndexPath.row)
+        print(images)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

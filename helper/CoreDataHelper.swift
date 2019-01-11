@@ -48,5 +48,4 @@ struct CoreDataHelper {
             return []
         }
     }
-    
 }
