@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A419EF4221E695EC0033807D /* ImagePickerDelegateMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419EF4121E695EC0033807D /* ImagePickerDelegateMain.swift */; };
 		A438AC2421E6793B008DECD6 /* CollectionViewCellMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438AC2321E6793B008DECD6 /* CollectionViewCellMain.swift */; };
 		A476A5BC21E4200A00232328 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A476A5BB21E4200A00232328 /* CollectionViewController.swift */; };
 		A476A5BE21E4231400232328 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A476A5BD21E4231400232328 /* CollectionViewCell.swift */; };
@@ -22,7 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A419EF4121E695EC0033807D /* ImagePickerDelegateMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegateMain.swift; sourceTree = "<group>"; };
 		A438AC2321E6793B008DECD6 /* CollectionViewCellMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellMain.swift; sourceTree = "<group>"; };
 		A476A5BB21E4200A00232328 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		A476A5BD21E4231400232328 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -85,22 +83,13 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		A487A44721E71634002489D6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A419EF4121E695EC0033807D /* ImagePickerDelegateMain.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		A4B3893421E19ACC00B66269 = {
 			isa = PBXGroup;
 			children = (
+				A4B3894C21E19ACD00B66269 /* Info.plist */,
 				A487A44521E715B7002489D6 /* Controller */,
 				A487A44421E7159E002489D6 /* View */,
-				A487A44721E71634002489D6 /* Model */,
 				A477F56D21E3E97B0040EC8C /* helper */,
-				A4B3894C21E19ACD00B66269 /* Info.plist */,
 				A487A44621E715DB002489D6 /* SupportingFiles */,
 				A4B3893F21E19ACC00B66269 /* Sample */,
 				A4B3893E21E19ACC00B66269 /* Products */,
@@ -201,7 +190,6 @@
 				A438AC2421E6793B008DECD6 /* CollectionViewCellMain.swift in Sources */,
 				A4B3894321E19ACC00B66269 /* ViewController.swift in Sources */,
 				A476A5BE21E4231400232328 /* CollectionViewCell.swift in Sources */,
-				A419EF4221E695EC0033807D /* ImagePickerDelegateMain.swift in Sources */,
 				A477F56F21E3E9910040EC8C /* CoreDataHelper.swift in Sources */,
 				A4B3894121E19ACC00B66269 /* AppDelegate.swift in Sources */,
 				A476A5BC21E4200A00232328 /* CollectionViewController.swift in Sources */,

@@ -10,13 +10,14 @@ import UIKit
 import CoreData
 import Photos
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImagePickerDelegateMain {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewAccessibilityDelegate {
     
     
     // MARK: - Variables
     let imagePicker = UIImagePickerController()
     var selectedCell: CollectionViewCellMain?
     var images = [UIImage?](repeating: nil, count: 12)
+    
     
     // MARK: - Variables
     @IBOutlet weak var usernameTextField: UITextField!
@@ -31,26 +32,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.dataSource = self
         imagePicker.delegate = self
         
-    }
-    
-    func pickImageMain(cell: CollectionViewCellMain) {
-        PHPhotoLibrary.requestAuthorization{ (status) in
-            switch status {
-            case .authorized:
-                DispatchQueue.main.async {
-                    self.imagePicker.sourceType = .photoLibrary
-                    self.imagePicker.allowsEditing = true
-                    self.selectedCell = cell
-                    self.present(self.imagePicker, animated: true, completion: nil)
-                }
-            case .notDetermined:
-                print("not determined")
-            case .restricted:
-                print("restricted")
-            case .denied:
-                print("denied")
-            }
-        }
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -72,10 +54,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return 12
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! CollectionViewCellMain
-        cell.delegate = self
         
         if let imageForIndexPath  = images[indexPath.row] {
             cell.image = imageForIndexPath
