@@ -90,6 +90,15 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath)
+        
+        // check the iPhone model
+        
+        header.frame.size = CGSize(width: collectionView.bounds.width, height: 307)
+        return header
+    }
 }
 
 
