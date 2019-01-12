@@ -38,6 +38,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.bounces = (scrollView.contentOffset.y > 5)
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             
@@ -119,6 +123,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         images.insert(item, at: destinationIndexPath.row)
         print(images)
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "mainHeader", for: indexPath)
+        return header
     }
     
     override func viewWillAppear(_ animated: Bool) {
