@@ -27,6 +27,13 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         collectionView.delegate = self
         imagePicker.delegate = self
         
+        
+        
+    }
+    
+    // disable scrolling to the top
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.bounces = (scrollView.contentOffset.y > 50)
     }
     
     // MARK: - delegate function
@@ -95,6 +102,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath)
         
         // check the iPhone model
+        
         
         header.frame.size = CGSize(width: collectionView.bounds.width, height: 307)
         return header

@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import Photos
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewAccessibilityDelegate {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewAccessibilityDelegate, UIDocumentInteractionControllerDelegate {
     
     
     // MARK: - Variables
@@ -23,6 +23,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     fileprivate var longPressGesture: UILongPressGestureRecognizer!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    // post on instagram
+    let instagramManager = InstagramManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +113,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             case .denied:
                 print("denied")
             }
+        }
+        
+        if images[indexPath.row] != nil {
+            InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: images[indexPath.row]!, view: self.view)
         }
     }
     
