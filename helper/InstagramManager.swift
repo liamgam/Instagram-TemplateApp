@@ -9,6 +9,13 @@
 import Foundation
 import UIKit
 
+/*
+ 
+ open the instagram app: UIApplication.shared.open(instagramURL! as URL, completionHandler: nil)
+ 
+ */
+
+
 class InstagramManager: NSObject, UIDocumentInteractionControllerDelegate {
     
     private let kInstagramURL = "instagram://app"
@@ -27,31 +34,35 @@ class InstagramManager: NSObject, UIDocumentInteractionControllerDelegate {
         return Singleton.instance
     }
     
-    func postImageToInstagramWithCaption(imageInstagram: UIImage, view: UIView, result: Bool? = nil) {
-        // called to post image to the instagram application
+    
+    func saveImageDocumentDirectory(image: UIImage){
+        let fileManager = FileManager.default
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(kfileNameExtension)  // !!!
+        print(paths)
+        let imageData = image.jpegData(compressionQuality: 1)
+        fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
+    }
+    
+    func getDirectoryPath() -> String {
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(kfileNameExtension)
+        return paths
+    }
+    
+    
+    func postImageToInstagramWithCaption(imageInstagram: UIImage, view: UIView) {
+        saveImageDocumentDirectory(image: imageInstagram)
+        let directPath = getDirectoryPath()
         
         let instagramURL = NSURL(string: kInstagramURL)
         if UIApplication.shared.canOpenURL(instagramURL! as URL) {
-            let jpgPath = (NSTemporaryDirectory() as NSString).appendingPathComponent(kfileNameExtension)
-            do {
-//                imageInstagram.jpegData(compressionQuality: 1.0)?.write(to: URL(string: jpgPath)!)
-                let jpeg = imageInstagram.jpegData(compressionQuality: 1.0)
-                try jpeg?.write(to: URL(string: jpgPath)!)
-            } catch {
-                print(error)
-            }
+            saveImageDocumentDirectory(image: imageInstagram)
             let rect = CGRect(x: 0, y: 0, width: 612, height: 612)
-            let fileURL = NSURL.fileURL(withPath: jpgPath)
-            documentInteractionController.url = fileURL
+            let fileurl = URL(fileURLWithPath: directPath)
+            documentInteractionController.url = fileurl
             documentInteractionController.delegate = self
             documentInteractionController.uti = kUTI
-
-            // adding caption for the image
-//             documentInteractionController.annotation = ["InstagramCaption": instagramCaption]
             documentInteractionController.presentOpenInMenu(from: rect, in: view, animated: true)
         } else {
-
-//             alert displayed when the instagram application is not available in the device
             UIAlertView(title: kAlertViewTitle, message: kAlertViewMessage, delegate:nil, cancelButtonTitle:"Ok").show()
         }
     }

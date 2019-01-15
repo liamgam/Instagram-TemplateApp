@@ -43,7 +43,7 @@
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>Instagram</string>
+        <string>instagram</string>
 	</array>
 </dict>
 </plist>

@@ -10,8 +10,7 @@ import UIKit
 import CoreData
 import Photos
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewAccessibilityDelegate, UIDocumentInteractionControllerDelegate {
-    
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewAccessibilityDelegate, UIDocumentInteractionControllerDelegate{
     
     // MARK: - Variables
     let imagePicker = UIImagePickerController()
@@ -24,8 +23,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    // post on instagram
-    let instagramManager = InstagramManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +77,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             collectionView.endInteractiveMovement()
         }
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 12
