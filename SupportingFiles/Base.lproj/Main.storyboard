@@ -92,10 +92,12 @@
                                         </view>
                                         <color key="backgroundColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="rPU-rj-yTX" secondAttribute="trailing" id="7mk-Yj-RTb"/>
-                                            <constraint firstItem="rPU-rj-yTX" firstAttribute="leading" secondItem="Z5b-pJ-ins" secondAttribute="leading" id="DT4-nu-f8Q"/>
-                                            <constraint firstItem="rPU-rj-yTX" firstAttribute="top" secondItem="Z5b-pJ-ins" secondAttribute="top" id="EHh-hx-5cu"/>
-                                            <constraint firstAttribute="bottom" secondItem="rPU-rj-yTX" secondAttribute="bottom" id="ccc-gF-eFa"/>
+                                            <constraint firstAttribute="trailing" secondItem="rPU-rj-yTX" secondAttribute="trailing" id="3r1-Xg-HJJ"/>
+                                            <constraint firstItem="rPU-rj-yTX" firstAttribute="leading" secondItem="Z5b-pJ-ins" secondAttribute="leading" id="Cx0-sI-KVo"/>
+                                            <constraint firstAttribute="bottom" secondItem="rPU-rj-yTX" secondAttribute="bottom" id="JvT-tW-ovQ"/>
+                                            <constraint firstItem="rPU-rj-yTX" firstAttribute="centerY" secondItem="Z5b-pJ-ins" secondAttribute="centerY" id="MJj-3w-J8L"/>
+                                            <constraint firstItem="rPU-rj-yTX" firstAttribute="top" secondItem="Z5b-pJ-ins" secondAttribute="top" id="bGg-jp-F4L"/>
+                                            <constraint firstItem="rPU-rj-yTX" firstAttribute="centerX" secondItem="Z5b-pJ-ins" secondAttribute="centerX" id="fna-sf-Jr7"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageInCell" destination="rPU-rj-yTX" id="pBW-IV-Zjo"/>

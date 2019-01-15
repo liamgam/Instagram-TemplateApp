@@ -62,8 +62,6 @@ class InstagramManager: NSObject, UIDocumentInteractionControllerDelegate {
             documentInteractionController.uti = kUTI
             documentInteractionController.presentOpenInMenu(from: rect, in: view, animated: true)
         } else {
-//            let alert = UIAlertController(title: kAlertViewTitle, message: kAlertViewMessage, preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             UIAlertView(title: kAlertViewTitle, message: kAlertViewMessage, delegate:nil, cancelButtonTitle:"Ok").show()
         }
     }

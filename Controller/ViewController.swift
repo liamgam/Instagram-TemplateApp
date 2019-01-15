@@ -18,6 +18,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var images = [UIImage?](repeating: nil, count: 12)
     
     
+    
     // MARK: - Variables
     fileprivate var longPressGesture: UILongPressGestureRecognizer!
     @IBOutlet weak var usernameTextField: UITextField!
