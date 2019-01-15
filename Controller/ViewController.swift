@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import Photos
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewAccessibilityDelegate, UIDocumentInteractionControllerDelegate{
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewAccessibilityDelegate, UIDocumentInteractionControllerDelegate {
     
     // MARK: - Variables
     let imagePicker = UIImagePickerController()
@@ -95,27 +95,23 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        PHPhotoLibrary.requestAuthorization{ (status) in
-            switch status {
-            case .authorized:
-                DispatchQueue.main.async {
-                    self.imagePicker.sourceType = .photoLibrary
-                    self.imagePicker.allowsEditing = true
-                    self.selectedCell = collectionView.cellForItem(at: indexPath) as? CollectionViewCellMain
-                    self.present(self.imagePicker, animated: true, completion: nil)
-                }
-            case .notDetermined:
-                print("not determined")
-            case .restricted:
-                print("restricted")
-            case .denied:
-                print("denied")
-            }
+
+        if images[indexPath.row] != nil {
+            let alert = UIAlertController()
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Change Image", comment: "Default action"), style: .default, handler: { _ in
+                self.openPhotoLibrary(indexPath: indexPath)
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Share", comment: "Default action"), style: .default, handler: { _ in
+                InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: self.images[indexPath.row]!, view: self.view)
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Default action"), style: .cancel, handler: { _ in
+                print("cancel")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            openPhotoLibrary(indexPath: indexPath)
         }
         
-        if images[indexPath.row] != nil {
-            InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: images[indexPath.row]!, view: self.view)
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
@@ -157,6 +153,27 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         username.username = usernameTextField.text
         CoreDataHelper.saveProfile()
     }
+    
+    func openPhotoLibrary(indexPath: IndexPath) {
+        PHPhotoLibrary.requestAuthorization{ (status) in
+            switch status {
+            case .authorized:
+                DispatchQueue.main.async {
+                    self.imagePicker.sourceType = .photoLibrary
+                    self.imagePicker.allowsEditing = true
+                    self.selectedCell = self.collectionView.cellForItem(at: indexPath) as? CollectionViewCellMain
+                    self.present(self.imagePicker, animated: true, completion: nil)
+                }
+            case .notDetermined:
+                print("not determined")
+            case .restricted:
+                print("restricted")
+            case .denied:
+                print("denied")
+            }
+        }
+    }
+    
 }
 
 

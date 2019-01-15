@@ -37,8 +37,7 @@ class InstagramManager: NSObject, UIDocumentInteractionControllerDelegate {
     
     func saveImageDocumentDirectory(image: UIImage){
         let fileManager = FileManager.default
-        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(kfileNameExtension)  // !!!
-        print(paths)
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(kfileNameExtension)
         let imageData = image.jpegData(compressionQuality: 1)
         fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
     }
@@ -63,6 +62,8 @@ class InstagramManager: NSObject, UIDocumentInteractionControllerDelegate {
             documentInteractionController.uti = kUTI
             documentInteractionController.presentOpenInMenu(from: rect, in: view, animated: true)
         } else {
+//            let alert = UIAlertController(title: kAlertViewTitle, message: kAlertViewMessage, preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             UIAlertView(title: kAlertViewTitle, message: kAlertViewMessage, delegate:nil, cancelButtonTitle:"Ok").show()
         }
     }
