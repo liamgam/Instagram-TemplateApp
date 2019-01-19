@@ -11,17 +11,12 @@ import UIKit
 class CollectionViewCellMain: UICollectionViewCell, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
-    
-    
-    // MARK: - Outlets
-    @IBOutlet weak var imageInCell: UIImageView!
-    
-    
-    
+    @IBOutlet weak var addImage: UIImageView!
     
     var image: UIImage? {
         didSet {
-            self.imageInCell.image = image
+            self.addImage.image = image
         }
     }
+
 }
