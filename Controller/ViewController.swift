@@ -15,7 +15,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     // MARK: - Variables
     let imagePicker = UIImagePickerController()
     var selectedCell: CollectionViewCellMain?
-    var images = [UIImage?](repeating: nil, count: 12)
+    var images = [UIImage?](repeating: nil, count: 18)
     
     
     
@@ -40,7 +40,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.bounces = (scrollView.contentOffset.y > 5)
+        // stops from users to scroll over the top
+        // scrollView.bounces = (scrollView.contentOffset.y > 5)
+        
+        if usernameTextField.isFirstResponder {
+            self.view.endEditing(true)
+            let profiles = CoreDataHelper.retrieveprofile()
+            let profile = profiles.first
+            profile?.username = usernameTextField.text
+            // create a new profile and set the username to the textfield user input
+            let username = CoreDataHelper.newProfile()
+            username.username = usernameTextField.text
+            CoreDataHelper.saveProfile()
+        }
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -81,7 +94,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return 18
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -89,8 +102,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         if let imageForIndexPath  = images[indexPath.row] {
             cell.image = imageForIndexPath
-        } else {
-            cell.image = UIImage(named: "addImages")
         }
         return cell
     }
@@ -113,6 +124,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             openPhotoLibrary(indexPath: indexPath)
         }
         
+    }
+    
+    // !!!
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! CollectionViewCellMain
+        cell.image = nil
     }
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
