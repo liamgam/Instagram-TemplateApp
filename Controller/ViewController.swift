@@ -19,6 +19,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     
+    
     // MARK: - Variables
     fileprivate var longPressGesture: UILongPressGestureRecognizer!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -37,6 +38,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
         collectionView.addGestureRecognizer(longPressGesture)
         
+        collectionView.refreshControl = UIRefreshControl()
+        
+        
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let deadline = DispatchTime.now() + .milliseconds(20)
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
+            self.collectionView.refreshControl?.endRefreshing()
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
