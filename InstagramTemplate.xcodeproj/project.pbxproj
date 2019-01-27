@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A42E725421EE72E800F2716A /* InstagramMockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42E725321EE72E800F2716A /* InstagramMockViewController.swift */; };
 		A438AC2421E6793B008DECD6 /* CollectionViewCellMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A438AC2321E6793B008DECD6 /* CollectionViewCellMain.swift */; };
 		A476A5BC21E4200A00232328 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A476A5BB21E4200A00232328 /* CollectionViewController.swift */; };
 		A476A5BE21E4231400232328 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A476A5BD21E4231400232328 /* CollectionViewCell.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A42E725321EE72E800F2716A /* InstagramMockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramMockViewController.swift; sourceTree = "<group>"; };
 		A438AC2321E6793B008DECD6 /* CollectionViewCellMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellMain.swift; sourceTree = "<group>"; };
 		A476A5BB21E4200A00232328 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		A476A5BD21E4231400232328 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				A476A5BB21E4200A00232328 /* CollectionViewController.swift */,
 				A476A5BD21E4231400232328 /* CollectionViewCell.swift */,
 				A4C8F51621E58E2C00FE05CF /* ImagePickerDelegate.swift */,
+				A42E725321EE72E800F2716A /* InstagramMockViewController.swift */,
 			);
 			path = Sample;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				A477F56F21E3E9910040EC8C /* CoreDataHelper.swift in Sources */,
 				A4B3894121E19ACC00B66269 /* AppDelegate.swift in Sources */,
 				A476A5BC21E4200A00232328 /* CollectionViewController.swift in Sources */,
+				A42E725421EE72E800F2716A /* InstagramMockViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
