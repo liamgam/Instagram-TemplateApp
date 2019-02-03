@@ -11,4 +11,11 @@ import UIKit
 class InstaMockCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var addImageInCell: UIImageView!
+    
+    var image: UIImage? {
+        didSet {
+            self.addImageInCell.image = image
+        }
+    }
+    
 }

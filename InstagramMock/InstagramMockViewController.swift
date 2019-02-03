@@ -7,15 +7,20 @@
 //
 
 import UIKit
+import Photos
 
-class InstagramMockViewController: UIViewController {
+class InstagramMockViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: Properties
+    var imagePicker = UIImagePickerController()
+    var selectedCell: InstaMockCollectionViewCell?
     var images = [UIImage?](repeating: nil, count: 18)
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +32,12 @@ class InstagramMockViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        imagePicker.delegate = self
     }
+    
+    
+    
 }
 
 
@@ -45,6 +55,61 @@ extension InstagramMockViewController: UICollectionViewDelegate, UICollectionVie
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if images[indexPath.row] == nil {
+            openPhotoLibrary(indexPath: indexPath)
+        } else {
+            let alert = UIAlertController()
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Change Image", comment: "Default action"), style: .default, handler: {_ in
+                self.openPhotoLibrary(indexPath: indexPath)
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Share", comment: "Default action"), style: .default, handler: {_ in
+                InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: self.images[indexPath.row]!, view: self.view)
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Default action"), style: .cancel, handler: { _ in
+                print("cancel")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+}
+
+
+extension InstagramMockViewController {
+    
+    func openPhotoLibrary(indexPath: IndexPath) {
+        PHPhotoLibrary.requestAuthorization { (status) in
+            switch status {
+            case .authorized:
+                DispatchQueue.main.async {
+                    self.imagePicker.sourceType = .photoLibrary
+                    self.imagePicker.allowsEditing = true
+                    self.selectedCell = self.collectionView.cellForItem(at: indexPath) as? InstaMockCollectionViewCell
+                    self.present(self.imagePicker, animated: true, completion: nil)
+                }
+            case .notDetermined:
+                print("not determined")
+            case .restricted:
+                print("restricted")
+            case .denied:
+                print("denied")
+            }
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let imagePicked = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            
+            dismiss(animated: true, completion: nil)
+            guard
+                let cell = selectedCell,
+                let indexPath = collectionView.indexPath(for: cell) else { return }
+            
+            images[indexPath.row] = imagePicked
+            cell.image = imagePicked
+            cell.setNeedsLayout()
+        }
+    }
 }
 
 
