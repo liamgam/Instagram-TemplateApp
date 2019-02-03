@@ -52,7 +52,18 @@ extension InstagramMockViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postImagesCell", for: indexPath) as! InstaMockCollectionViewCell
+        
+        if let imageForIndexPath = images[indexPath.row] {
+            cell.image = imageForIndexPath
+        }
+        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postImagesCell", for: indexPath) as! InstaMockCollectionViewCell
+        cell.image = nil
+        cell.addImageInCell = nil
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -98,6 +109,7 @@ extension InstagramMockViewController {
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         if let imagePicked = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             
             dismiss(animated: true, completion: nil)
@@ -108,6 +120,7 @@ extension InstagramMockViewController {
             images[indexPath.row] = imagePicked
             cell.image = imagePicked
             cell.setNeedsLayout()
+            
         }
     }
 }
