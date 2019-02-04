@@ -17,5 +17,4 @@ class InstaMockCollectionViewCell: UICollectionViewCell {
             self.addImageInCell.image = image
         }
     }
-    
 }
