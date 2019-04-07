@@ -37,6 +37,7 @@ class InstagramMockViewController: UIViewController, UIImagePickerControllerDele
         
         imagePicker.delegate = self
         
+        // add longPressGesture for when users want to change slots in the collectionView
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture(gesture:)))
         collectionView.addGestureRecognizer(longPressGesture)
     }
